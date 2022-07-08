@@ -2,12 +2,19 @@
     text-align: center;
 }
 
-.container{
+.main_container{
     width: 100vw;
 }
 aside{
     min-width: 20vw;
+    float: left;
 }
 main{
     min-width: 60vw;
+    max-width: 60vw;
+    float: left;
+}
+
+navbar-custom>li{
+    display: inline-block !important;
 }

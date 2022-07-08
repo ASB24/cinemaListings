@@ -13,8 +13,39 @@
 </head>
 <body>
 
-    <!-- Content -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="./index.php" style="margin-left: 10px;">
+            <i class="fa fa-clapperboard" aria-hidden="true"></i>
+            Movie Listings
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto navbar-custom">
+                <li class="nav-item active">
+                    <a class="nav-link" href="./index.php">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="./index.php?end=true">Log out</a>
+                    <a class="nav-link" href="./index.php">Welcome, <?php echo $_SESSION['user'] ?></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0-beta1/js/bootstrap.min.js" integrity="sha512-Hqe3s+yLpqaBbXM6VA0cnj/T56ii5YjNrMT9v+us11Q81L0wzUG0jEMNECtugqNu2Uq5MSttCg0p4KK0kCPVaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <div class="main_container">
+        <aside>
+            <h1>xd</h1>
+        </aside>
+        <main>
+            
+            
+        </main>
+        <aside>
+            xd
+        </aside>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0-beta1/js/bootstrap.bundle.min.js" integrity="sha512-ndrrR94PW3ckaAvvWrAzRi5JWjF71/Pw7TlSo6judANOFCmz0d+0YE+qIGamRRSnVzSvIyGs4BTtyFMm3MT/cg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>

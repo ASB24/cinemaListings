@@ -60,19 +60,19 @@
                     echo '<div class="row">';
                     while($data = $result->fetch_assoc()){
                         $id = $data['id'];
-                        $name = $data['name'];
+                        $title = $data['title'];
                         $image = $data['image'];
-                        $sinopsis = $data['sinopsis'];
+                        $synopsis = $data['synopsis'];
                         $duration = $data['duration'];
                         $genre = $data['genre'];
-                        $class = $data['class'];
+                        $class = $data['classification'];
                         echo ' 
                         <div class="col-sm-6 my-3">
                             <div class="card">
                                 <img class="card-img top" src="./images/'.$image.'" alt="Preview Image" srcset="">
                                 <div class="card-body">
-                                    <h5 class="card-title">'.$name.'</h5>
-                                    <p class="card-text">'.$sinopsis.'</p>
+                                    <h5 class="card-title">'.$title.'</h5>
+                                    <p class="card-text">'.$synopsis.'</p>
                                 </div>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"><span class="navbar-brand mb-0 h2">Duration:</span> '.$duration.' Minutes </li>

@@ -1,3 +1,59 @@
+<?php
+    include('./db.php');
+    $registered = false;
+
+    if($_SERVER['REQUEST_METHOD'] === "POST"){
+        if(isset($_POST['register'])){
+            $conn = openConn();
+            $user = $_POST['user'];
+            $pass = $_POST['password'];
+
+            $stmt = $conn->prepare("INSERT INTO cinema_users (username, password) values (?, ?)");
+            $stmt->bind_param('ss', $user, $pass);
+            
+            if($stmt->execute()){
+                $registered = true;
+            }else{
+                print_r(['Ta mal eso manito', 'ya tu sabe']);
+            }
+            closeConn($conn);
+        }
+
+        if(isset($_POST['register'])){
+            $conn = openConn();
+            $user = $_POST['user'];
+            $pass = $_POST['password'];
+
+            $stmt = $conn->prepare("INSERT INTO cinema_users (username, password) values (?, ?)");
+            $stmt->bind_param('ss', $user, $pass);
+            
+            if($stmt->execute()){
+                $registered = true;
+            }else{
+                print_r(['Ta mal eso manito', 'ya tu sabe']);
+            }
+            closeConn($conn);
+        }else if(isset($_POST['login'])){
+            $conn = openConn();
+            $user = $_POST['user'];
+            $pass = $_POST['password'];
+
+            $stmt = $conn->prepare("SELECT * FROM cinema_users WHERE username = ? AND password = ?");
+            $stmt->bind_param('ss',$user,$pass);
+            if($stmt->execute() && $stmt->get_result()->num_rows > 0){
+                session_start();
+                $_SESSION['user'] = $user;
+                $_SESSION['loginTime'] = date('Y-m-d H:i:s');
+                header("Location: ./index.php");
+            }else{
+                print_r(['Ta mal eso manito', 'ya tu sabe']);
+            }
+            closeConn($conn);
+        }
+
+        
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +66,19 @@
     <link rel="stylesheet" href="./index.css">
 </head>
 <body>
+    
+    <?php
+        if($registered){
+            echo `
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                
+                    <strong>Done!</strong> User created, please login.
+                </div>
+            `;
+        }
+    ?>
+    
     <div class="card mx-auto my-5" style="width:18rem;">
         <h1 id="loginTitle" >Login to the site</h1>
         <div class="card-body">
@@ -18,8 +87,16 @@
                   <label for="user" class="form-label">ID</label>
                   <input type="text"
                     class="form-control" name="user" id="user" aria-describedby="helpId" placeholder="">
-                  <small id="helpId" class="form-text text-muted">Username ID</small>
+                  <small id="helpId" class="form-text text-muted">User ID</small>
                 </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input type="password"
+                    class="form-control" name="password" id="password" aria-describedby="helpPass" placeholder="">
+                  <small id="helpPass" class="form-text text-muted">User Password</small>
+                </div>
+                <button type="submit" name="register" class="btn btn-primary">Register</button>
+                <button type="submit" name="login" class="btn btn-primary">Login</button>
             </form>
         </div>
     </div>

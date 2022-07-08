@@ -1,4 +1,13 @@
 #loginTitle{
     text-align: center;
+}
 
+.container{
+    width: 100vw;
+}
+aside{
+    min-width: 20vw;
+}
+main{
+    min-width: 60vw;
 }

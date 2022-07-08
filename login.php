@@ -68,14 +68,12 @@
             <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
                 <div class="mb-3">
                   <label for="user" class="form-label">ID</label>
-                  <input type="text"
-                    class="form-control" name="user" id="user" aria-describedby="helpId" placeholder="">
+                  <input type="text" required class="form-control" name="user" id="user" aria-describedby="helpId" placeholder="">
                   <small id="helpId" class="form-text text-muted">User ID</small>
                 </div>
                 <div class="mb-3">
                   <label for="password" class="form-label">Password</label>
-                  <input type="password"
-                    class="form-control" name="password" id="password" aria-describedby="helpPass" placeholder="">
+                  <input type="password" required class="form-control" name="password" id="password" aria-describedby="helpPass" placeholder="">
                   <small id="helpPass" class="form-text text-muted">User Password</small>
                 </div>
                 <button type="submit" name="register" class="btn btn-primary">Register</button>

@@ -108,22 +108,22 @@
             <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                   <label for="title" class="form-label">Title</label>
-                  <input type="text" name="title" id="title" value="<?php if(isset($listing)) echo $listing['title'] ?>" class="form-control" placeholder="" aria-describedby="helpTitle">
+                  <input type="text" required name="title" id="title" value="<?php if(isset($listing)) echo $listing['title'] ?>" class="form-control" placeholder="" aria-describedby="helpTitle">
                   <small id="helpTitle" class="text-muted">Title of the movie</small>
                 </div>
                 <div class="mb-3">
                   <label for="duration" class="form-label">Duration</label>
-                  <input type="number" name="duration" id="duration" value="<?php if(isset($listing)) echo $listing['duration'] ?>" class="form-control" placeholder="" aria-describedby="helpDuration">
+                  <input type="number" required name="duration" id="duration" value="<?php if(isset($listing)) echo $listing['duration'] ?>" class="form-control" placeholder="" aria-describedby="helpDuration">
                   <small id="helpDuration" class="text-muted">For how many minutes does the movie run?</small>
                 </div>
                 <div class="mb-3">
                   <label for="genre" class="form-label">Genre</label>
-                  <input type="text" name="genre" id="genre" value="<?php if(isset($listing)) echo $listing['genre'] ?>" class="form-control" placeholder="" aria-describedby="helpGenre">
+                  <input type="text" required name="genre" id="genre" value="<?php if(isset($listing)) echo $listing['genre'] ?>" class="form-control" placeholder="" aria-describedby="helpGenre">
                   <small id="helpGenre" class="text-muted">Genre of the movie</small>
                 </div>
                 <div class="mb-3">
                   <label for="class" class="form-label">Classification</label>
-                  <select class="form-control" name="class" id="class">
+                  <select class="form-control" required name="class" id="class">
                     <option><?php if(isset($listing)) echo $listing['classification'] ?></option>
                     <option>G</option>
                     <option>PG</option>
@@ -134,11 +134,11 @@
                 </div>
                 <div class="mb-3">
                   <label for="synopsis" class="form-label">Synopsis</label>
-                  <textarea class="form-control" name="synopsis" id="synopsis" rows="10"><?php if(isset($listing)) echo $listing['synopsis'] ?></textarea>
+                  <textarea class="form-control" required name="synopsis" id="synopsis" rows="10"><?php if(isset($listing)) echo $listing['synopsis'] ?></textarea>
                 </div>
                 <div class="mb-3">
                   <label for="image" class="form-label">Poster</label>
-                  <input type="file" class="form-control" name="image" id="image" placeholder="" aria-describedby="fileHelpId">
+                  <input type="file" required class="form-control" name="image" id="image" placeholder="" aria-describedby="fileHelpId">
                   <div id="fileHelpId" class="form-text">Poster image of movie (any image format)</div>
                 </div>
                 <?php

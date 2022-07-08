@@ -50,14 +50,14 @@
 
         if(isset($_POST['id'])){
             $stmt = $conn->prepare(" UPDATE `cinema_listings` SET `title`=?,`duration`=?,`genre`=?,`classification`=?,`synopsis`=?,`image`=? WHERE `id` = ? ");
-            $stmt->bind_param('sisssss', $_POST['title'], $_POST['duration'], $_POST['genre'], $_POST['classification'], $_POST['synopsis'], $_POST['image'], $_POST['id']);
+            $stmt->bind_param('sisssss', $_POST['title'], $_POST['duration'], $_POST['genre'], $_POST['class'], $_POST['synopsis'], $filename, $_POST['id']);
         }else{
             $stmt = $conn->prepare("INSERT INTO `cinema_listings`(`title`, `duration`, `genre`, `classification`, `synopsis`, `image`) VALUES (?,?,?,?,?,?)");
-            $stmt->bind_param('sissss', $_POST['title'], $_POST['duration'], $_POST['genre'], $_POST['classification'], $_POST['synopsis'], $_POST['image']);
+            $stmt->bind_param('sissss', $_POST['title'], $_POST['duration'], $_POST['genre'], $_POST['class'], $_POST['synopsis'], $filename);
         }
 
         if($stmt->execute()){
-            if(isset($_POST['replace_img'])) unlink("./images/".$_POST['replace_img']);
+            if(isset($_POST['replace_img']) && !file_exists("./images/".$_POST['replace_img'])) unlink("./images/".$_POST['replace_img']);
             closeConn($conn);
             header('Location: index.php');
             exit();
@@ -102,9 +102,9 @@
     
     <div class="main_container">
         <aside>
-            <h1>xd</h1>
+            <img src="./assets/ad.gif" alt="ad" class="img-fluid w-100">
         </aside>
-        <main>
+        <main class="p-1">
             <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                   <label for="title" class="form-label">Title</label>
@@ -122,16 +122,14 @@
                   <small id="helpGenre" class="text-muted">Genre of the movie</small>
                 </div>
                 <div class="mb-3">
-                  <label for="class" class="form-label">Class</label>
-                  <input type="text" name="class" id="class" value="<?php if(isset($listing)) echo $listing['classification'] ?>" class="form-control" placeholder="" aria-describedby="helpClass">
-                  <small id="helpClass" class="text-muted">Classification of the movie</small>
-                </div>
-                <div class="mb-3">
                   <label for="class" class="form-label">Classification</label>
                   <select class="form-control" name="class" id="class">
-                    <option>New Delhi</option>
-                    <option>Istanbul</option>
-                    <option>Jakarta</option>
+                    <option><?php if(isset($listing)) echo $listing['classification'] ?></option>
+                    <option>G</option>
+                    <option>PG</option>
+                    <option>PG-13</option>
+                    <option>R</option>
+                    <option>NC-17</option>
                   </select>
                 </div>
                 <div class="mb-3">
@@ -153,7 +151,7 @@
             </form>
         </main>
         <aside>
-            xd
+            
         </aside>
     </div>
     

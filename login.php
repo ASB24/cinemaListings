@@ -14,23 +14,7 @@
             if($stmt->execute()){
                 $registered = true;
             }else{
-                print_r(['Ta mal eso manito', 'ya tu sabe']);
-            }
-            closeConn($conn);
-        }
-
-        if(isset($_POST['register'])){
-            $conn = openConn();
-            $user = $_POST['user'];
-            $pass = $_POST['password'];
-
-            $stmt = $conn->prepare("INSERT INTO cinema_users (username, password) values (?, ?)");
-            $stmt->bind_param('ss', $user, $pass);
-            
-            if($stmt->execute()){
-                $registered = true;
-            }else{
-                print_r(['Ta mal eso manito', 'ya tu sabe']);
+                print_r('The user could not be registered, please try again');
             }
             closeConn($conn);
         }else if(isset($_POST['login'])){
@@ -43,10 +27,9 @@
             if($stmt->execute() && $stmt->get_result()->num_rows > 0){
                 session_start();
                 $_SESSION['user'] = $user;
-                $_SESSION['loginTime'] = date('Y-m-d H:i:s');
                 header("Location: ./index.php");
             }else{
-                print_r(['Ta mal eso manito', 'ya tu sabe']);
+                print_r('The credentials provided are not correct, please try again.');
             }
             closeConn($conn);
         }

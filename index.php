@@ -51,9 +51,9 @@
     
     <div class="main_container">
         <aside>
-            <h1>xd</h1>
+            <img src="./assets/ad.gif" alt="ad" class="img-fluid w-100">
         </aside>
-        <main>
+        <main class="p-1">
             <h1>Listings</h1>
             <?php
                 if($presentListings === TRUE){
@@ -67,7 +67,7 @@
                         $genre = $data['genre'];
                         $class = $data['classification'];
                         echo ' 
-                        <div class="col-sm-6 my-3">
+                        <div class="col-sm-4 my-3">
                             <div class="card">
                                 <img class="card-img top" src="./images/'.$image.'" alt="Preview Image" srcset="">
                                 <div class="card-body">
@@ -103,7 +103,7 @@
             <?php
                 if($_SESSION['user'] === "admin"){
                     echo '
-                    <div class="btn-group btn-group-lg mx-auto">
+                    <div class="btn-group btn-group-lg mx-auto w-75 my-4">
                         <a name="create" id="create" class="btn btn-success" href="listing.php" role="button">Create Listing</a>
                     </div>';
                 }
